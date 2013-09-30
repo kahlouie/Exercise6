@@ -19,14 +19,11 @@ def main():
 
     # removes all spaces and creates a list of words
     words = filetext.split()
-
+    word_count = {}
+    
     for i in range(len(words)):
         words[i:i + 1] = words[i].split("--")
 
-    word_count = {}
-
-
-    for i in range(len(words)):
         # removes periods and commas
         words[i] = words[i].strip("\"\'.,?():;!_")
 
@@ -36,7 +33,6 @@ def main():
 
     # create new dict and list to sort words alphabetically by frequency
     frequency_of_words = {}
-    frequency_count = []
 
 
     for key, value in word_count.iteritems():
@@ -48,15 +44,15 @@ def main():
         frequency_of_words[value].sort()
 
     # creates list that we can sort frequencies
-    for key, value in frequency_of_words.iteritems():
-        frequency_count.append(key)
-
-    frequency_count.sort()
-
-    # printing sorted frequencies on the list of words for that frequency
-    for frequency in frequency_count:
+    for frequency in sorted(frequency_of_words.keys())[::-1]:
         for word in frequency_of_words[frequency]:
             print word, frequency
+
+
+    # printing sorted frequencies on the list of words for that frequency
+    # for frequency in frequency_count:
+    #     for word in frequency_of_words[frequency]:
+    #         print word, frequency
 
 
 main()
